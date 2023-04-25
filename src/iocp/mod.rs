@@ -26,11 +26,12 @@
 //! AFD-based strategy for polling.
 
 mod afd;
+mod bindings;
 mod port;
 
 use afd::{base_socket, Afd, AfdPollInfo, AfdPollMask, HasAfdInfo, IoStatusBlock};
+use bindings::{ERROR_INVALID_HANDLE, ERROR_IO_PENDING, STATUS_CANCELLED};
 use port::{IoCompletionPort, OverlappedEntry};
-use windows_sys::Win32::Foundation::{ERROR_INVALID_HANDLE, ERROR_IO_PENDING, STATUS_CANCELLED};
 
 use crate::{Event, PollMode};
 

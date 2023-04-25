@@ -13,18 +13,12 @@ use std::ptr;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Once;
 
-use windows_sys::Win32::Foundation::{
-    CloseHandle, HANDLE, HMODULE, NTSTATUS, STATUS_NOT_FOUND, STATUS_PENDING, STATUS_SUCCESS,
-    UNICODE_STRING,
+use super::bindings::{
+    CloseHandle, GetModuleHandleW, GetProcAddress, WSAIoctl, FILE_OPEN, FILE_SHARE_READ,
+    FILE_SHARE_WRITE, HANDLE, HMODULE, IO_STATUS_BLOCK, NTSTATUS, OBJECT_ATTRIBUTES,
+    SIO_BASE_HANDLE, SIO_BSP_HANDLE_POLL, SOCKET_ERROR, STATUS_NOT_FOUND, STATUS_PENDING,
+    STATUS_SUCCESS, SYNCHRONIZE, UNICODE_STRING,
 };
-use windows_sys::Win32::Networking::WinSock::{
-    WSAIoctl, SIO_BASE_HANDLE, SIO_BSP_HANDLE_POLL, SOCKET_ERROR,
-};
-use windows_sys::Win32::Storage::FileSystem::{
-    FILE_OPEN, FILE_SHARE_READ, FILE_SHARE_WRITE, SYNCHRONIZE,
-};
-use windows_sys::Win32::System::LibraryLoader::{GetModuleHandleW, GetProcAddress};
-use windows_sys::Win32::System::WindowsProgramming::{IO_STATUS_BLOCK, OBJECT_ATTRIBUTES};
 
 #[derive(Default)]
 #[repr(C)]
